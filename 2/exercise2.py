@@ -7,8 +7,9 @@
 3. 実行ファイルとクラスを定義するファイルは分ける
 """
 
-from exercise2_class import Enemy, MainCharacter
 import time
+
+from exercise2_class import Enemy, MainCharacter
 
 print("戦闘ゲームにようこそ。")
 diff_input = input("「簡単」・「普通」・「難しい」から難易度を選択してください: ")
@@ -71,6 +72,5 @@ for i in range(len(enemy_name)):
             print(f"敵の{enemy.name}を倒した！")
             time.sleep(2)
             break
-        
     
 print("YOU WON!")

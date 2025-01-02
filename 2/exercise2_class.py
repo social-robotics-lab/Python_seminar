@@ -3,7 +3,7 @@
 """
 
 import random as rnd
-from typing import Dict, Optional, Tuple, Union, Literal
+from typing import Dict, Literal, Optional, Tuple
 
 
 class Skill:
@@ -17,6 +17,7 @@ class Skill:
         self.self_damage = self_damage
         self.self_healing = self_healing
 
+
 class Character:
     def __init__(self, name: str) -> None:
         self.name = name
@@ -28,10 +29,16 @@ class Character:
             self.hp = 0
             self.is_dead = True
 
+
 class MainCharacterSkills:
-    def __init__(self, base_damage: int,special_damage: int,self_damage: int,self_healing: int):
+    def __init__(
+        self, base_damage: int, special_damage: int, self_damage: int, self_healing: int
+    ):
         self.base = Skill(damage=base_damage)
-        self.special = Skill(damage=special_damage, self_damage=self_damage, self_healing=self_healing)
+        self.special = Skill(
+            damage=special_damage, self_damage=self_damage, self_healing=self_healing
+        )
+
 
 class MainCharacter(Character):
     def __init__(self, name: str):
@@ -73,15 +80,17 @@ class MainCharacter(Character):
             self.hp -= self.skills.special.self_damage
             self.hp += self.skills.special.self_healing
         return damage
-    
-        
+
+
 class Enemy(Character):
-    def __init__(self, name: str, difficulty: Literal["easy", "normal", "hard"], index: int):
+    def __init__(
+        self, name: str, difficulty: Literal["easy", "normal", "hard"], index: int
+    ):
         super().__init__(name=name)
         self.difficulty = difficulty
         self.index = index + 1
         self.hp, self.skill = self.__gain_abilities()
-        
+
     def __gain_abilities(self) -> Tuple[int, Skill]:
         if self.difficulty == "easy":
             hp = 20 * self.index
@@ -92,6 +101,6 @@ class Enemy(Character):
 
         skill = Skill(damage=hp // 6)
         return hp, skill
-    
+
     def attack(self) -> int:
         return self.skill.damage
