@@ -74,7 +74,7 @@
 #### 3. Pythonのインストール
 
 1. Chocolateyのインストール
-    1. <a href="https://chocolatey.org/install#individual" target="_blank">こちら</a>のサイトにアクセス
+    1. [こちら](https://chocolatey.org/install#individual)のサイトにアクセス
         * メールアドレスは登録しなくても構いません
     2. 「2. Install with powershell.exe」内にある「Now run the following command:」の下に書いてあるコマンドをコピー
 
@@ -276,7 +276,7 @@
 
 #### 4. VSCodeのインストール
 
-* <a href="https://code.visualstudio.com/docs?dv=osx" target="_blank">こちら</a>をクリックして、VSCodeのzipファイルをインストール
+* [こちら](https://code.visualstudio.com/docs?dv=osx)をクリックして、VSCodeのzipファイルをインストール
 * 解凍してアプリケーションに移す
 
 <!--
@@ -284,7 +284,7 @@
 
 #### 1. GitHubのアカウント登録
 
-* <a href="https://github.co.jp/" target="_blank">こちら</a>にアクセスしてサインアップする
+* [こちら](https://github.co.jp/)にアクセスしてサインアップする
 
 #### 2. 登録したメールアドレスを勉強会のグループチャットに送る
 
