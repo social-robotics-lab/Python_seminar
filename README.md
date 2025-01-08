@@ -1,201 +1,298 @@
-# Python勉強会
+# Python勉強会について
 
-## Python勉強会について
-
-### 概要
+## 概要
 
 この勉強会はPython初学者向けのものです。
 3年生からジョイントリサーチが始まりますが、いきなりPythonでロボットを開発しろと言われても難しいと思うので、この勉強会である程度Pythonに慣れてもらってから進級してもらえると嬉しい限りです。
 
-### 使用ツール
+## 使用ツール
 
 * VSCode
-* Python
-* Git
+* Python (3.12.2)
+* Git + GitHub
 
-### カリキュラム
+## カリキュラム
 
 この勉強会のカリキュラムはこんな感じで考えてます。  
-進め方としては、初回で各自githubに上がっている資料をダウンロードしてもらって、各回の演習ファイルをどこかに出してもらおうかなという感じで考えてます。（仮）  
+進め方としては、初回で各自GitHubに上がっている資料をダウンロードしてもらって、各回の演習ファイルをどこかに出してもらおうかなという感じで考えてます。（仮）  
 2月の内容はみなさんと相談しながら決めようかな。
 
 |    | 日程 | 内容 |
-|----| ---- | ---- |
-|第1回| 1/ | Python (繰り返しまで) |
-|第2回| 1/ | Python (関数・クラス) |
-|第3回| 1/ | Python　(復習) |
-|第4回| 1/ | Git・コマンドラインの使い方 |
-|第5回| 2/ | TBD |
-|第6回| 2/ | TBD |
-|第7回| 2/ | TBD |
-|第8回| 2/ | TBD |
+| ---- | ---- | ---- |
+| 第1回 | 1/9 21時〜 | Python (繰り返しまで) |
+| 第2回 | 1/ | Python (関数・クラス) |
+| 第3回 | 1/ | Python (復習) |
+| 第4回 | 1/ | Git・コマンドラインの使い方 |
+| 第5回 | 2/ | TBD |
+| 第6回 | 2/ | TBD |
+| 第7回 | 2/ | TBD |
+| 第8回 | 2/ | TBD |
 
-### 準備物
+## 準備物
 
 準備するものやその方法を書いてます。
 
-#### Windows
+### Windows
 
-1. wgetのインストール(Windows 10の人のみ)
-   * Microsoft Storeのアプリインストーラーにアクセス
-   * `インストール`ボタンを押し、画面の指示に従ってインストール
-2. VSCodeのインストール
-   * コマンドプロンプトを開く
-   * コマンドプロンプトに以下を入力
+#### 0. WinGetのインストール (Windows 10の人のみ)
 
-    ``` bash
+1. Microsoft Storeで「アプリインストーラー」と検索
+2. `インストール` ボタンを押し、画面の指示に従ってインストール
+
+#### 1. WinGetの確認
+
+1. 管理者として「ターミナル」アプリを開く
+
+    ①「スタート」ボタンを右クリック  
+    ②「ターミナル (管理者)」をクリック
+
+    ![管理者としてターミナルを開く方法](img/スクリーンショット%202025-01-06%20182530.png)
+
+2. 「このアプリがデバイスに変更を加えることを許可しますか？」というメッセージが表示された場合は「はい」を選択
+3. 開かれたターミナルのウィンドウで `winget -v` と入力し、Enterキーを押して実行
+4. `v1.2.10691` のように表示されればOK
+
+#### 2. VSCodeのインストール
+
+1. ターミナルに以下を入力して実行
+
+    ```powershell
     winget install Microsoft.VisualStudioCode
     ```
 
+2. 契約条件への同意
+
+    ```plaintext
+    すべてのソース契約条件に同意しますか？
+    [Y] はい  [N] いいえ:
+    ```
+
+    と表示されたら `y` と入力し、Enter
+
+    `インストールが完了しました` と表示されればOK
+
+#### 3. Pythonのインストール
+
+1. Chocolateyのインストール
+    1. [こちら](https://chocolatey.org/install#individual)のサイトにアクセス
+        * メールアドレスは登録しなくても構いません
+    2. 「2. Install with powershell.exe」内にある「Now run the following command:」の下に書いてあるコマンドをコピー
+
+        例：
+
+        ```powershell
+        Set-ExecutionPolicy Bypass -Scope Process -Force; [System.Net.ServicePointManager]::SecurityProtocol = [System.Net.ServicePointManager]::SecurityProtocol -bor 3072; iex ((New-Object System.Net.WebClient).DownloadString('https://community.chocolatey.org/install.ps1'))
+        ```
+
+    3. 先ほどコピーしたコマンドをターミナルに貼り付けてEnter
+        * 以下のように表示されればインストール完了
+
+            ```plaintext
+            Chocolatey (choco.exe) is now ready.
+            You can call choco from anywhere, command line or powershell by typing choco.
+            Run choco /? for a list of functions.
+            You may need to shut down and restart powershell and/or consoles
+            first prior to using choco.
+            Ensuring chocolatey commands are on the path
+            Ensuring chocolatey.nupkg is in the lib folder
+            ```
+
+    4. `choco -v` コマンドを実行し、`2.4.1` のようにバージョンが表示されればOK
+
+2. pyenvのインストール
+    1. ターミナルで以下のコマンドを実行
+
+        ```powershell
+        choco install pyenv-win
+        ```
+
+        以下のようなメッセージが表示されたら `y` と入力し、Enter
+
+        ```plaintext
+        Do you want to run the script?([Y]es/[A]ll - yes to all/[N]o/[P]rint):
+        ```
+
+        次のように表示されればOK
+
+        ```plaintext
+        The install of pyenv-win was successful.
+            Deployed to 'C:\Users\ユーザー名\.pyenv\'
+        ```
+
+    2. 「設定」アプリを開き、「アプリ > アプリの詳細設定 > アプリ実行エイリアス」の順に選択して、「アプリ インストーラー」の「python.exe」と「python3.exe」をオフにする
+
+        ![アプリ インストーラーのスクリーンショット](img/スクリーンショット%202025-01-06%20184530.png)
+
+    3. PCを再起動
+
+    4. バージョンの確認
+
+        ターミナルで以下のコマンドを実行
+
+        ```powershell
+        pyenv --version
+        ```
+
+        `pyenv 3.1.1` のように表示されればOK
+
+    5. pyenvのアップデート
+
+        ターミナルで以下のコマンドを実行
+
+        ```powershell
+        pyenv update
+        ```
+
 3. Pythonのインストール
-   1. Chocolateyのインストール
-      1. [こちら](https://chocolatey.org/install)のサイトにアクセス
-      2. Individual（個人）を選択
-      3. 「2.Install with powershell.exe」内にある「Now run the following command:」の下に書いてあるコマンドをコピー
-      4. PowerShellを開いて、右クリックし「管理者として実行」を選択
-      5. コピーしたコマンドを貼り付けてエンターキーを押す
-         * ログ中に `Chocolatey (choco.exe) is now ready.` と出ていればインストール完了
-      6. `choco -v`コマンドを実行し、バージョンが表示されればOK
-   2. pyenvのインストール
-      1. PowerShellに以下のコマンドを入力
 
-         ```powershell
-         choco install pyenv-win
-         ```
+    ターミナルで以下のコマンドを実行
 
-      2. バージョンの確認
-         PowerShellに以下のコマンドを入力
+    ```powershell
+    pyenv install 3.12.2
+    ```
 
-         ```powershell
-         pyenv --version
-         ```
+4. 使用するPythonのバージョンを指定
 
-   3. pythonのインストール
-      terminalで以下のコマンドを入力
+    ターミナルで以下のコマンドを実行
 
-      ```powershell
-      pyenv install 3.12.2
-      ```
+    ```powershell
+    pyenv versions
+    ```
 
-   4. 使用するpythonのversionを指定
-      terminalで以下のコマンドを入力
+    ここで `3.12.2` が確認されたら、以下のコマンドをそれぞれ実行
 
-      ```powershell
-      pyenv versions
-      ```
+    ```powershell
+    pyenv global 3.12.2
+    ```
 
-      ここで、3.12.2が確認されたら、次に下のコマンドを入力
+    ```powershell
+    pyenv local 3.12.2
+    ```
+    <!-- PowerShellで `&&` 使えなかった -->
 
-      ```powershell
-      pyenv global 3.12.2
-      pyenv local 3.12.2
-      ```
+5. Pythonのバージョンを確認
 
-   5. pythonのversionを確認
-      terminalで以下のコマンドを入力
+    ターミナルで以下のコマンドを実行
 
-      ```powershell
-      python --version
-      ```
+    ```powershell
+    python --version
+    ```
 
-      ちゃんとインストールしたバージョンが出てきたら成功です！
+    ちゃんとインストールしたバージョン (今回は `Python 3.12.2`) が表示されたら成功です！
 
-#### Mac
+### Mac
 
-1. Mac App Store から Xcode をインストール
-   * Xcodeはインストールに20～30分かかる。ひたすら待つ
+#### 1. Mac App StoreからXcodeをインストール
 
-2. Homebrewのインストール
-   * terminal.app を起動
-   * 以下のコマンドを入力
+* Xcodeはインストールに20～30分かかる。ひたすら待つ
 
-    ``` zsh
+#### 2. Homebrewのインストール
+
+* 「ターミナル.app (terminal.app)」を起動
+* 以下のコマンドを実行
+
+    ```zsh
     /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
     ```
 
-3. Pythonのインストール
-   1. pyenvのインストール  
-      terminalで以下のコマンドを入力
+#### 3. Pythonのインストール
 
-      ``` zsh
-      brew install pyenv
-      ```
+1. pyenvのインストール
 
-   2. 使用しているShellの確認  
-      terminalで以下のコマンドを入力
+    ターミナルで以下のコマンドを実行
 
-      ``` zsh
-      echo $SHELL
-      ```
+    ```zsh
+    brew install pyenv
+    ```
 
-      スラッシュの最後が`zsh`か`bash`か覚えといてください
+2. 使用しているShellの確認
 
-   3. 環境変数の設定
-      terminalで以下のコマンドをコピー&ペースト
-      * `zsh`の人の場合
+    ターミナルで以下のコマンドを実行
 
-         ```zsh
-         echo 'export PYENV_ROOT="$HOME/.pyenv"' >> ~/.zshrc
-         echo 'export PATH="$PYENV_ROOT/bin:$PATH"' >> ~/.zshrc
-         echo 'eval "$(pyenv init --path)"' >> ~/.zshrc
-         echo 'eval "$(pyenv init -)"' >> ~/.zshrc
-         cat ~/.zshrc
-         ```
+    ```zsh
+    echo $SHELL
+    ```
 
-      * `bash`の人の場合
+    スラッシュの最後が `zsh` か `bash` か覚えておいてください
 
-         ```zsh
-         echo 'export PYENV_ROOT="$HOME/.pyenv"' >> ~/.bash_profile
-         echo 'export PATH="$PYENV_ROOT/bin:$PATH"' >> ~/.bash_profile
-         echo 'eval "$(pyenv init --path)"' >> ~/.bash_profile
-         echo 'eval "$(pyenv init -)"' >> ~/.bash_profile
-         cat ~/.bash_profile
-         ```
+3. 環境変数の設定
 
-      最後に`echo`の中身が出力されているか確認してください。
+    ターミナルで以下のコマンドをコピー＆ペースト
 
-   4. pythonのインストール
-      terminalで以下のコマンドを入力
+    * `zsh` の人の場合
 
-      ```zsh
-      pyenv install 3.12.2
-      ```
+        ```zsh
+        echo 'export PYENV_ROOT="$HOME/.pyenv"' >> ~/.zshrc \
+        && echo 'export PATH="$PYENV_ROOT/bin:$PATH"' >> ~/.zshrc \
+        && echo 'eval "$(pyenv init --path)"' >> ~/.zshrc \
+        && echo 'eval "$(pyenv init -)"' >> ~/.zshrc \
+        && cat ~/.zshrc
+        ```
 
-   5. 使用するpythonのversionを指定
-      terminalで以下のコマンドを入力
+    * `bash` の人の場合
 
-      ```zsh
-      pyenv versions
-      ```
+        ```bash
+        echo 'export PYENV_ROOT="$HOME/.pyenv"' >> ~/.bash_profile \
+        && echo 'export PATH="$PYENV_ROOT/bin:$PATH"' >> ~/.bash_profile \
+        && echo 'eval "$(pyenv init --path)"' >> ~/.bash_profile \
+        && echo 'eval "$(pyenv init -)"' >> ~/.bash_profile \
+        && cat ~/.bash_profile
+        ```
 
-      ここで、3.12.2が確認されたら、次に下のコマンドを入力
+    最後に`echo`の中身が出力されているか確認してください
 
-      ```zsh
-      pyenv global 3.12.2
-      pyenv local 3.12.2
-      ```
+4. Pythonのインストール
 
-   6. pythonのversionを確認
-      terminalで以下のコマンドを入力
+    ターミナルで以下のコマンドを実行
 
-      ```zsh
-      python --version
-      ```
+    ```zsh
+    pyenv install 3.12.2
+    ```
 
-      ちゃんとインストールしたバージョンが出てきたら成功です！
+5. 使用するPythonのバージョンを指定
 
-4. VSCodeのインストール
-    * [こちら](https://code.visualstudio.com/docs?dv=osx)をクリックして、VSCodeのzipファイルをインストール
-    * 解凍してアプリケーションに移す
+    ターミナルで以下のコマンドを実行
 
-<!-- #### 両方
+    ```zsh
+    pyenv versions
+    ```
 
-1. githubのアカウント登録
-   * [こちら](https://github.co.jp/)にアクセスしてサインアップする
-2. 登録したメールアドレスを勉強会のグループチャットに送る
-3. VSCodeにてcodeコマンドをインポート
-   1. コントロール＋シフト＋p（Macはコマンド＋シフト＋p）を押す
-        * 上にテキストボックスが出てきます
-   2. そこに`shell`と打ち込むと、`Shell Command: Install 'code' command in PATH`が出てくるのでそれを選択
-   3. パスワードを要求されたら打ち込む
-   4. `successfully imported`的な文章が出てきたらOK -->
+    ここで `3.12.2` が確認されたら、以下のコマンドを実行
+
+    ```zsh
+    pyenv global 3.12.2 \
+    && pyenv local 3.12.2
+    ```
+
+6. Pythonのバージョンを確認
+
+    ターミナルで以下のコマンドを実行
+
+    ```zsh
+    python --version
+    ```
+
+    ちゃんとインストールしたバージョン (今回は `Python 3.12.2`) が表示されたら成功です！
+
+#### 4. VSCodeのインストール
+
+* [こちら](https://code.visualstudio.com/docs?dv=osx)をクリックして、VSCodeのzipファイルをインストール
+* 解凍してアプリケーションに移す
+
+<!--
+### 両方
+
+#### 1. GitHubのアカウント登録
+
+* [こちら](https://github.co.jp/)にアクセスしてサインアップする
+
+#### 2. 登録したメールアドレスを勉強会のグループチャットに送る
+
+#### 3. VSCodeにてcodeコマンドをインポート
+
+1. `Ctrl`+`Shift`+`P` (Macは `⌘ Cmd`+`⇧ Shift`+`P`) を押す
+    * 上にテキストボックスが出てきます
+2. そこに `shell` と打ち込むと、`Shell Command: Install 'code' command in PATH` が出てくるのでそれを選択
+3. パスワードを要求されたら打ち込む
+4. `successfully imported` 的な文章が出てきたらOK
+-->
